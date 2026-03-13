@@ -11,7 +11,9 @@ def read_zfs(fileName):
     return D, E
 
 
-@pytest.mark.parametrize("testdir", ["o2_qbox_xml", "o2_qe_hdf5"])
+@pytest.mark.parametrize(
+    "testdir", ["o2_qbox_xml", "o2_qe_hdf5", "c3h6_gpaw", "c3h6_gpaw_ae"]
+)
 def test_zfs(testdir):
     file_new = f"{testdir}/zfs.xml"
     file_ref = f"{testdir}/zfs_ref.xml"

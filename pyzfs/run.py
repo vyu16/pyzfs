@@ -71,6 +71,8 @@ def main():
         "wfcfmt": "qeh5",
         "prefix": "pwscf",
         "fftgrid": "wave",
+        "ae": False,
+        "ae_reduce": 4,
         "comm": MPI.COMM_WORLD,
         "memory": "critical",
     }

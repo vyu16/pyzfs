@@ -4,7 +4,7 @@ from gpaw import GPAW, PW
 from ase.optimize import BFGS
 
 d = 1.54
-dx = d * (2 / 3)**0.5
+dx = d * (2 / 3) ** 0.5
 dz = d / 3**0.5
 h = 1.1
 
@@ -23,13 +23,13 @@ def cnh2n(n):
             positions.append((x, 0, -h))
             positions.append((x + dx, 0, dz))
         elif i % 2 == 0:
-            positions.append((x, -h * (2 / 3)**0.5, -h / 3**0.5))
-            positions.append((x, h * (2 / 3)**0.5, -h / 3**0.5))
+            positions.append((x, -h * (2 / 3) ** 0.5, -h / 3**0.5))
+            positions.append((x, h * (2 / 3) ** 0.5, -h / 3**0.5))
         else:
-            positions.append((x, -h * (2 / 3)**0.5, z + h / 3**0.5))
-            positions.append((x, h * (2 / 3)**0.5, z + h / 3**0.5))
+            positions.append((x, -h * (2 / 3) ** 0.5, z + h / 3**0.5))
+            positions.append((x, h * (2 / 3) ** 0.5, z + h / 3**0.5))
 
-    atoms = Atoms(f'(CH2){n}', positions)
+    atoms = Atoms(f"(CH2){n}", positions)
     atoms.set_distance(0, 2, h, 0)
     atoms.set_distance(-3, -1, h, 0)
     magmoms = np.zeros(3 * n)
@@ -39,17 +39,14 @@ def cnh2n(n):
     return atoms
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     n = 3
     atoms = cnh2n(n)
     d = atoms.get_distance(0, -3)
     atoms.center(vacuum=2 * d)
-    name = f'C{n}H{2 * n}'
-    atoms.calc = GPAW(mode=PW(ecut=300),
-                      xc='PBE',
-                      parallel={'kpt': 1},
-                      txt=name + '.txt')
+    name = f"c{n}h{2 * n}"
+    atoms.calc = GPAW(
+        mode=PW(ecut=300), xc="PBE", parallel={"kpt": 1}, txt=name + ".txt"
+    )
     atoms.get_potential_energy()  # Static (SCF) calc
-    atoms.calc.write(name + '.gpw', 'all')
-
-
+    atoms.calc.write(name + ".gpw", "all")
