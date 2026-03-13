@@ -6,7 +6,6 @@ from ase import Atoms
 from six import string_types
 from .units import bohr_to_angstrom
 
-
 # Miscellaneous functions
 
 
