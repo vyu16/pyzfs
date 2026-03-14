@@ -54,12 +54,19 @@ After installation, **PyZFS** can be executed in two ways:
    - ``wfcfmt``: Format of input wavefunction. Default is ``qeh5`` Supported options are:
 
       - ``qeh5``: Quantum ESPRESSO (v6.x or v7.x) HDF5 save file. ``path`` should contain the ``prefix.xml`` file and the ``prefix.save`` folder.
-      - ``qe``: Quantum ESPRESSO (v6.1 only) save file. ``path`` should be the save folder that contains ``data-files.xml`` etc. Deprecated in favor of ``qeh5``.
+      - ``qe``: Quantum ESPRESSO (v6.1 only) save file. Deprecated.
       - ``qbox``: Qbox XML file.
+      - ``gpaw``: GPAW calculator (assumed to be finished).
       - ``cube-wfc``: Cube files of (real) wavefunctions (Kohn-Sham orbitals).
       - ``cube-density``: Cube files of (signed) squared wavefunction. This option supports ``pp.x`` output with ``plot_num = 7`` and ``lsign = .TRUE.``.
 
    - ``filename``: Name of the Qbox sample XML file that contains input wavefunction. Only used if ``wfcfmt`` is ``qbox``.
+
+   - ``gpwfile``: Name of the GPAW calculator. Only used if ``wfcfmt`` is ``gpaw``.
+
+   - ``ae``: Boolean, whether all-electron (AE) reconstruction is performed. Default is False. Only used if ``wfcfmt`` is ``gpaw``.
+
+   - ``ae_reduce``: Scale to reduce AE real-space grid. Default is 4. Only used if ``wfcfmt`` is ``gpaw``.
 
    - ``fftgrid``: FFT grid used. Default is ``wave``. Supported options are:
 
