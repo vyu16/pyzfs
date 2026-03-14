@@ -1,6 +1,5 @@
 from __future__ import absolute_import, division, print_function
 import numpy as np
-import os, sys
 from mpi4py import MPI
 
 from .baseloader import WavefunctionLoader
@@ -16,7 +15,6 @@ from ..units import bohr_to_angstrom
 from scipy.ndimage import zoom, _ni_support
 
 from gpaw import GPAW
-from gpaw.old.pw.descriptor import PWDescriptor
 from gpaw.mpi import serial_comm
 from gpaw.utilities.ps2ae import PS2AE
 

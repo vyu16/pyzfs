@@ -1,7 +1,7 @@
-
 import numpy as np
 from glob import iglob
 from ase.io import read
+
 
 def Get_ZFS_Tensor(filename):
     flines = open(filename).readlines()
@@ -9,7 +9,7 @@ def Get_ZFS_Tensor(filename):
         if "Total D tensor (MHz):" in line:
             ind = i
     zfs_tensor = []
-    for line in flines[ind+1:ind+4]:
+    for line in flines[ind + 1 : ind + 4]:
         line = line.strip().replace("[", "").replace("]", "")
         line_arr = np.array([float(x) for x in line.split()])
         zfs_tensor.append(line_arr)
@@ -45,15 +45,13 @@ def Get_ZFS_Corr(dir_prefix):
     zfs3 = Get_ZFS_Tensor(f"C3/out/ZFS_OutFile.txt")
     zfs_avg = (zfs1 + zfs2 + zfs3) / 3
 
-    zfs = zfs_u/2. - zfs_avg/2.
+    zfs = zfs_u / 2.0 - zfs_avg / 2.0
     D, E = Get_D_E(zfs)
     print("Corrected: ", D, E)
 
     return D_u, E_u, D, E
 
 
-
 if __name__ == "__main__":
 
     Get_ZFS_Corr("NV")
-

@@ -7,9 +7,9 @@
 mpirun python run_gpaw.py
 
 # Run PyZFS to compute the ZFS tensor
-mpirun pyzfs --wfcfmt gpaw --gpwfile nc62.gpw > zfs.out
+mpirun pyzfs --wfcfmt gpaw --gpwfile nc62.gpw --ae True > zfs.out
 # An equivalent command is:
-# mpirun python -m pyzfs.run --wfcfmt gpaw --gpwfile nc62.gpw > zfs.out
+# mpirun python -m pyzfs.run --wfcfmt gpaw --gpwfile nc62.gpw --ae True > zfs.out
 
 D=`grep --color=never "D unit" zfs.xml | grep --color=never -Eoh '[+-]?[0-9]+([.][0-9]+)?'`
 Dref=`grep --color=never "D unit" zfs_ref.xml | grep --color=never -Eoh '[+-]?[0-9]+([.][0-9]+)?'`
